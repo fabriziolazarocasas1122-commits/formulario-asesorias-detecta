@@ -19,4 +19,24 @@ formulario-asesorias/
 
 Para verlo, abre `formulario-asesorias/index.html` en el navegador o activa GitHub Pages.
 
-> Nota: este formulario no envía los datos a ningún servidor por sí solo. Para recibir inscripciones hay que conectarlo a un servicio (por ejemplo Google Forms, Formspree o una hoja de cálculo).
+## Conectar con Google Sheets
+
+Cada inscripción se guarda como una fila nueva en una hoja de Google Sheets: fecha de registro, nombres y apellidos, celular, correo, tema, jueves elegido y comentario.
+
+1. Crea una hoja nueva en [sheets.new](https://sheets.new) y ponle un nombre (ej. *Inscripciones asesorías*).
+2. En la hoja, ve a **Extensiones → Apps Script**.
+3. Borra lo que aparece y pega todo el contenido de `google-sheets/Codigo.gs`. Guarda (💾).
+4. Haz clic en **Implementar → Nueva implementación**.
+   - Tipo: **Aplicación web**
+   - Ejecutar como: **Yo**
+   - Quién tiene acceso: **Cualquier usuario**
+5. Haz clic en **Implementar**, autoriza los permisos y **copia la URL** que termina en `/exec`.
+6. Abre `formulario-asesorias/index.html`, busca esta línea y pega la URL entre las comillas:
+   ```js
+   const URL_GOOGLE_SHEETS = '';
+   ```
+7. Listo: llena una inscripción de prueba y revisa la pestaña **Inscripciones** de tu hoja (se crea sola con sus encabezados).
+
+> Si cambias el código de Apps Script, vuelve a **Implementar → Gestionar implementaciones → Editar → Nueva versión** para que los cambios se apliquen.
+>
+> Mientras `URL_GOOGLE_SHEETS` esté vacío, el formulario no guarda nada: solo muestra el resumen para copiarlo.

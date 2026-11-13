@@ -362,18 +362,19 @@
     ok.forEach((v,i)=>$('#p'+(i+1)).classList.toggle('ok',v));
   }
 
-  /* ---------- Guardado (base de datos del artefacto, si está disponible) ---------- */
-  function conTiempo(p,ms){return Promise.race([p,new Promise(r=>setTimeout(()=>r(null),ms))])}
+  /* ---------- Guardado en Google Sheets ----------
+     Pega aquí el enlace de tu aplicación web de Apps Script (termina en /exec).
+     Ver README.md, sección "Conectar con Google Sheets". */
+  const URL_GOOGLE_SHEETS = '';
+
   async function guardar(datos){
+    if(!URL_GOOGLE_SHEETS) return false;
     try{
-      if(!window.claude||!window.claude.use) return false;
-      const db=await conTiempo(window.claude.use('db'),10000);
-      if(!db) return false;
-      const user=await conTiempo(window.claude.use('user'),10000);
-      let id=null; try{ id=user?await user.id():null }catch(e){}
-      if(!id) return false;
-      const r=await conTiempo(db.doc('inscripciones/'+id).set(datos).then(()=>true),10000);
-      return r===true;
+      const ctrl=new AbortController(); const t=setTimeout(()=>ctrl.abort(),15000);
+      const res=await fetch(URL_GOOGLE_SHEETS,{method:'POST',body:JSON.stringify(datos),signal:ctrl.signal});
+      clearTimeout(t);
+      const j=await res.json().catch(()=>({}));
+      return res.ok && j.ok===true;
     }catch(e){ return false; }
   }
 
@@ -391,7 +392,7 @@
 
     const datos={
       nombre:$('#nombre').value.trim(), celular:$('#celular').value.replace(/\D/g,''), correo:$('#correo').value.trim(),
-      tema:estado.tema, fecha:estado.fecha,
+      tema:estado.tema, fecha:estado.fecha, fechaTexto:estado.fechaTxt,
       comentario:$('#comentario').value.trim(), registrado:new Date().toISOString()
     };
     const btn=$('#btnEnviar'); btn.disabled=true; btn.textContent='Enviando…';
@@ -414,7 +415,7 @@
       $('#cTexto').textContent='Recibimos tus datos. Te contactaremos para confirmar tu asistencia. ¡Te esperamos! 💙';
     }else{
       $('#cTitulo').textContent='Revisa tu resumen';
-      $('#cTexto').textContent='No pudimos registrar tu inscripción automáticamente desde aquí. Copia el resumen y envíalo al personal de Detecta Clínica para confirmar tu cupo.';
+      $('#cTexto').textContent='No pudimos enviar tu inscripción en este momento. Inténtalo de nuevo en unos minutos, o copia el resumen y envíalo al personal de Detecta Clínica.';
     }
     $('#form').style.display='none';
     $('#confirm').style.display='block'; $('#confirm').scrollIntoView({behavior:'smooth'});
