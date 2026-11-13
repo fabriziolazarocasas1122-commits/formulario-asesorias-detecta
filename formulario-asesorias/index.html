@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inscripción – Asesorías gratuitas de Nutrición y Psicología</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --morado:#1590ba; --morado-2:#3fbde3; --morado-claro:#e2f4fb; --morado-suave:#f3fafd;
+    --verde:#2fa36b; --verde-claro:#e3f6ec;
+    --coral:#f26d6d; --coral-claro:#fde9e9;
+    --amarillo:#d6e03a;
+    --texto:#1d2a3a; --texto-2:#5d6b7c; --borde:#d8e8f0; --blanco:#fff;
+    --radio:18px; --sombra:0 10px 30px -12px rgba(21,144,186,.25);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Nunito",system-ui,sans-serif;color:var(--texto);background:
+    radial-gradient(circle at 10% 0%, #dff3fb 0, transparent 40%),
+    radial-gradient(circle at 100% 30%, #f4f8d8 0, transparent 35%), #f8fcfe;line-height:1.5}
+  .wrap{max-width:780px;margin:0 auto;padding:24px 16px 60px}
+
+  /* ---------- Hero ---------- */
+  .hero{background:linear-gradient(135deg,#0f7fa6 0%,#1fa9d6 100%);color:#fff;border-radius:26px;padding:30px 26px 26px;position:relative;overflow:hidden;box-shadow:var(--sombra)}
+  .hero::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .hero::before{content:"";position:absolute;right:60px;bottom:-90px;width:180px;height:180px;border-radius:50%;background:rgba(214,224,58,.22)}
+  .etiqueta{display:inline-block;background:rgba(255,255,255,.18);padding:4px 12px;border-radius:99px;font-size:13px;font-weight:700;letter-spacing:.3px}
+  .logo{background:#fff;border-radius:14px;padding:8px 12px;display:inline-flex;position:relative;z-index:1}.logo img{height:38px;display:block}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+  .hero h1{font-size:clamp(26px,5vw,36px);margin:12px 0 6px;font-weight:900;line-height:1.15}
+  .hero p.sub{margin:0;opacity:.92;font-size:16px}
+  .servicios{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;position:relative;z-index:1}
+  .servicio{background:#fff;color:var(--texto);border-radius:16px;padding:14px 14px 12px}
+  .servicio .ico{font-size:30px}.servicio .frase{margin-top:10px;padding:9px 12px;border-radius:12px;font-size:14px;font-weight:800;font-style:italic;line-height:1.35}.servicio.nu .frase{background:#f4f8d8;color:#4b5200}.servicio.ps .frase{background:#e2f4fb;color:#0f6f91}
+  .lema{margin:16px 0 0;font-size:17px;font-weight:800;position:relative;z-index:1;opacity:.97}
+  .servicio h3{margin:4px 0 2px;font-size:17px;font-weight:800}
+  .servicio p{margin:0;font-size:14px;color:var(--texto-2)}
+  .datos-taller{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;position:relative;z-index:1}
+  .chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);padding:7px 12px;border-radius:12px;font-size:14px;font-weight:700}
+  .cupos{margin-top:14px;background:var(--amarillo);color:#3d4200;display:inline-block;padding:6px 14px;border-radius:99px;font-weight:800;font-size:14px;position:relative;z-index:1;animation:latido 2.4s ease-in-out infinite}
+  @keyframes latido{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+
+  /* ---------- Fotos ---------- */
+  .fotos{display:grid;grid-template-columns:1fr 1.4fr;gap:10px;margin:18px 0 6px}
+  .fotos figure{margin:0;border-radius:16px;overflow:hidden;position:relative;height:170px;box-shadow:var(--sombra)}
+  .fotos img{width:100%;height:100%;object-fit:cover;display:block}
+  .fotos figcaption{position:absolute;left:8px;bottom:8px;background:rgba(13,23,48,.7);color:#fff;font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px}
+
+  /* ---------- Progreso ---------- */
+  .progreso{position:sticky;top:0;z-index:5;background:rgba(248,252,254,.92);backdrop-filter:blur(6px);padding:12px 0 10px;margin:14px 0 4px}
+  .pasos{display:flex;gap:6px}
+  .paso{flex:1;text-align:center;font-size:12px;font-weight:700;color:var(--texto-2)}
+  .paso .barra{height:7px;border-radius:99px;background:var(--borde);margin-bottom:5px;transition:background .3s}
+  .paso.ok .barra{background:var(--verde)} .paso.ok{color:var(--verde)}
+
+  /* ---------- Tarjetas de sección ---------- */
+  .card{background:#fff;border:1px solid var(--borde);border-radius:var(--radio);padding:22px 20px;margin-top:16px;box-shadow:0 4px 16px -10px rgba(21,144,186,.18)}
+  .card-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .num{width:38px;height:38px;border-radius:12px;background:var(--morado);color:#fff;display:grid;place-items:center;font-weight:900;font-size:18px;flex:none}
+  .card-head h2{margin:0;font-size:20px;font-weight:900}
+  .card-head p{margin:0;font-size:14px;color:var(--texto-2)}
+
+  /* encabezado tipo tabla (como la referencia) */
+  .tabla-head{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .campo label{display:block;font-weight:800;font-size:14px;margin-bottom:6px}
+  .campo label span{color:var(--coral)}
+  .input{position:relative}
+  .input .e{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:18px;pointer-events:none}
+  .input input{width:100%;padding:13px 14px 13px 42px;border:2px solid var(--borde);border-radius:14px;font:inherit;font-size:16px;background:var(--morado-suave);transition:border .2s,background .2s}
+  .input input:focus{outline:none;border-color:var(--morado-2);background:#fff}
+  .campo.err input{border-color:var(--coral);background:var(--coral-claro)}
+  .msg-err{color:#c43d3d;font-size:13px;font-weight:700;margin-top:4px;display:none}
+  .campo.err .msg-err{display:block}
+  .full{grid-column:1/-1}
+
+  .temas{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .tema{border:2px solid var(--borde);border-radius:16px;padding:14px 10px;text-align:center;cursor:pointer;background:#fff;font:inherit;color:inherit;transition:all .18s}
+  .tema:hover{border-color:var(--morado-2);transform:translateY(-2px)}
+  .tema .g{font-size:30px;display:block}.tema img{width:100%;max-width:130px;height:auto;display:block;margin:0 auto -4px}.tema .dos{display:flex;justify-content:center}.tema .dos img{width:50%;max-width:80px;margin:14px -6px 4px}
+  .tema b{display:block;font-size:15px;margin-top:2px}
+  .tema small{color:var(--texto-2);font-size:12px}
+  .tema[aria-pressed="true"]{border-color:var(--morado);background:var(--morado-claro);box-shadow:0 0 0 3px rgba(63,189,227,.15)}
+
+  /* ---------- Calendario ---------- */
+  .cal{border:2px solid var(--borde);border-radius:18px;overflow:hidden;max-width:420px;margin:0 auto}
+  .cal-top{display:flex;align-items:center;justify-content:space-between;background:var(--morado);color:#fff;padding:12px 14px}
+  .cal-top b{font-size:17px;text-transform:capitalize}
+  .cal-top button{background:rgba(255,255,255,.18);border:0;color:#fff;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer}
+  .cal-top button:disabled{opacity:.3;cursor:default}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:10px}
+  .dow{text-align:center;font-size:12px;font-weight:800;color:var(--texto-2);padding:4px 0}
+  .dow.jue{color:var(--morado)}
+  .dia{aspect-ratio:1;border:0;border-radius:12px;background:transparent;font:inherit;font-size:15px;color:#c7bfd3;cursor:not-allowed}
+  .dia.vacio{visibility:hidden}
+  .dia.disp{background:var(--verde-claro);color:#1d6e47;font-weight:900;cursor:pointer;position:relative}
+  .dia.disp::after{content:"";position:absolute;bottom:6px;left:50%;width:5px;height:5px;border-radius:50%;background:var(--verde);transform:translateX(-50%)}
+  .dia.disp:hover{background:var(--verde);color:#fff}
+  .dia.sel{background:var(--morado)!important;color:#fff!important;box-shadow:0 6px 14px -6px var(--morado)}
+  .dia.sel::after{background:#fff}
+  .leyenda{display:flex;gap:14px;justify-content:center;font-size:12px;color:var(--texto-2);padding:0 10px 12px;flex-wrap:wrap}
+  .leyenda i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-2px;margin-right:4px}
+  .fecha-elegida{text-align:center;margin-top:12px;font-weight:800;color:var(--morado);min-height:24px}
+
+  /* ---------- Opiniones ---------- */
+  .preg{padding:0}
+  .preg:first-of-type{border-top:0;padding-top:0}
+  .preg p{margin:0 0 10px;font-weight:800}
+  .preg p .n{color:var(--morado)}
+  .caras{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+  .cara{border:2px solid var(--borde);background:#fff;border-radius:14px;padding:8px 2px;cursor:pointer;font:inherit;text-align:center;transition:all .15s}
+  .cara span{font-size:26px;display:block;filter:grayscale(.6);transition:filter .15s,transform .15s}
+  .cara small{font-size:11px;color:var(--texto-2);font-weight:700}
+  .cara:hover span{filter:none;transform:scale(1.15)}
+  .cara[aria-pressed="true"]{border-color:var(--morado);background:var(--morado-claro)}
+  .cara[aria-pressed="true"] span{filter:none;transform:scale(1.18)}
+  textarea{width:100%;min-height:96px;padding:12px 14px;border:2px solid var(--borde);border-radius:14px;font:inherit;font-size:15px;background:var(--morado-suave);resize:vertical}
+  textarea:focus{outline:none;border-color:var(--morado-2);background:#fff}
+  .contador{text-align:right;font-size:12px;color:var(--texto-2)}
+
+  .consent{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:14px;color:var(--texto-2)}
+  .consent input{width:20px;height:20px;accent-color:var(--morado);flex:none;margin-top:2px}
+
+  .enviar{display:block;width:100%;margin-top:18px;padding:17px;border:0;border-radius:16px;font:inherit;font-size:18px;font-weight:900;color:#fff;cursor:pointer;
+    background:linear-gradient(135deg,var(--verde) 0%,#26b37a 100%);box-shadow:0 12px 24px -12px var(--verde);transition:transform .15s}
+  .enviar:hover{transform:translateY(-2px)} .enviar:disabled{opacity:.6;cursor:wait;transform:none}
+  .aviso-err{display:none;background:var(--coral-claro);color:#a73232;border-radius:12px;padding:10px 14px;font-weight:700;margin-top:12px;font-size:14px}
+
+  /* ---------- Confirmación ---------- */
+  .confirm{display:none;text-align:center}
+  .confirm .big{font-size:64px;animation:pop .5s ease;display:flex;justify-content:center}.confirm .big img{width:200px;height:auto}.confirm .big.duo img{width:150px;margin:0 -10px}
+  @keyframes pop{0%{transform:scale(.3)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+  .confirm h2{font-size:26px;margin:6px 0;font-weight:900;color:var(--morado)}
+  .resumen{text-align:left;background:var(--morado-suave);border-radius:16px;padding:16px 18px;margin:16px 0;font-size:15px}
+  .resumen div{display:flex;gap:8px;padding:4px 0}
+  .resumen b{min-width:120px}
+  .btn-sec{background:#fff;border:2px solid var(--morado);color:var(--morado);font:inherit;font-weight:800;padding:11px 18px;border-radius:12px;cursor:pointer;margin:4px}
+  .nota{font-size:14px;color:var(--texto-2)}
+  footer{text-align:center;font-size:13px;color:var(--texto-2);margin-top:26px}
+
+  @media (max-width:560px){
+    .tabla-head,.servicios{grid-template-columns:1fr}
+    .temas{grid-template-columns:1fr 1fr 1fr}
+    .fotos{grid-template-columns:1fr 1fr}.fotos figure{height:130px}
+    .cara small{font-size:10px}
+    .resumen b{min-width:96px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== Encabezado ===== -->
+  <header class="hero">
+    <div class="hero-top"><div class="logo"><img src="logo.png" alt="Detecta Clínica"></div><span class="etiqueta">Área de Preventivo</span></div>
+    <h1>Este espacio es para ti 🤝</h1>
+    <p class="sub">Inscríbete a nuestras <b>asesorías gratuitas</b> y acompáñanos en tu proceso.</p>
+
+    <div class="servicios">
+      <div class="servicio nu">
+        <div class="ico">🥗</div>
+        <h3>Nutrición</h3>
+        <p>Consejos para una alimentación balanceada durante el proceso.</p>
+        <div class="frase">“Cada comida también es una forma de cuidarte.”</div>
+      </div>
+      <div class="servicio ps">
+        <div class="ico">🧠</div>
+        <h3>Psicología</h3>
+        <p>Herramientas para manejar emociones y fortalecer tu bienestar.</p>
+        <div class="frase">“No tienes que atravesarlo solo: aquí te escuchamos.”</div>
+      </div>
+    </div>
+
+    <p class="lema">💙 Tu bienestar también es parte de tu tratamiento. Cuerpo y mente, juntos en cada paso.</p>
+    <div class="datos-taller">
+      <span class="chip">📅 Jueves</span>
+      <span class="chip">⏰ Desde las 10:30 a. m.</span>
+      <span class="chip">📍 4to piso, Área de Preventivo</span>
+    </div>
+    <div class="cupos">✨ ¡Cupos limitados!</div>
+  </header>
+
+  <form id="form" novalidate>
+    <div class="progreso" aria-hidden="true">
+      <div class="pasos">
+        <div class="paso" id="p1"><div class="barra"></div>Tus datos</div>
+        <div class="paso" id="p2"><div class="barra"></div>Tema</div>
+        <div class="paso" id="p3"><div class="barra"></div>Fecha</div>
+        <div class="paso" id="p4"><div class="barra"></div>Comentario</div>
+      </div>
+    </div>
+
+    <!-- ===== 1. Datos ===== -->
+    <section class="card">
+      <div class="card-head">
+        <div class="num">1</div>
+        <div><h2>Tus datos</h2><p>Déjanos tus datos y te contactaremos para confirmar tu asistencia.</p></div>
+      </div>
+      <div class="tabla-head">
+        <div class="campo full" id="c-nombre">
+          <label for="nombre">Nombres y apellidos <span>*</span></label>
+          <div class="input"><span class="e">🙂</span><input id="nombre" name="nombre" autocomplete="name" placeholder="Ej. María Pérez Rojas"></div>
+          <div class="msg-err">Escribe tu nombre y apellido.</div>
+        </div>
+        <div class="campo" id="c-celular">
+          <label for="celular">Celular <span>*</span></label>
+          <div class="input"><span class="e">📱</span><input id="celular" name="celular" inputmode="numeric" autocomplete="tel" maxlength="11" placeholder="9XX XXX XXX"></div>
+          <div class="msg-err">Ingresa un celular de 9 dígitos que empiece con 9.</div>
+        </div>
+        <div class="campo" id="c-correo">
+          <label for="correo">Correo electrónico <span>*</span></label>
+          <div class="input"><span class="e">✉️</span><input id="correo" name="correo" type="email" autocomplete="email" placeholder="tucorreo@ejemplo.com"></div>
+          <div class="msg-err">Revisa que el correo esté bien escrito.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. Tema ===== -->
+    <section class="card">
+      <div class="card-head">
+        <div class="num">2</div>
+        <div><h2>¿Qué tema te interesa?</h2><p>Elige una opción.</p></div>
+      </div>
+      <div class="temas" id="temas" role="group" aria-label="Tema de interés">
+        <button type="button" class="tema" data-v="Nutrición" aria-pressed="false"><img src="detecto-nutricionista.png" alt=""><b>🥗 Nutrición</b><small>Alimentación</small></button>
+        <button type="button" class="tema" data-v="Psicología" aria-pressed="false"><img src="detecto-psicologo.png" alt=""><b>🧠 Psicología</b><small>Emociones</small></button>
+        <button type="button" class="tema" data-v="Ambos" aria-pressed="false"><span class="dos"><img src="detecto-nutricionista.png" alt=""><img src="detecto-psicologo.png" alt=""></span><b>💙 Ambos</b><small>¡Los dos!</small></button>
+      </div>
+      <div class="msg-err" id="e-tema" style="margin-top:8px">Selecciona un tema.</div>
+    </section>
+
+    <!-- ===== 3. Fecha ===== -->
+    <section class="card">
+      <div class="card-head">
+        <div class="num">3</div>
+        <div><h2>Elige tu jueves</h2><p>Las asesorías son solo los jueves desde las 10:30 a. m.</p></div>
+      </div>
+      <div class="cal">
+        <div class="cal-top">
+          <button type="button" id="prev" aria-label="Mes anterior">‹</button>
+          <b id="mes"></b>
+          <button type="button" id="next" aria-label="Mes siguiente">›</button>
+        </div>
+        <div class="cal-grid" id="grid"></div>
+        <div class="leyenda">
+          <span><i style="background:var(--verde-claro);border:1px solid var(--verde)"></i>Disponible</span>
+          <span><i style="background:var(--morado)"></i>Tu elección</span>
+          <span><i style="background:#eee"></i>No disponible</span>
+        </div>
+      </div>
+      <div class="fecha-elegida" id="fechaTxt"></div>
+      <div class="msg-err" id="e-fecha" style="text-align:center">Elige un jueves en el calendario.</div>
+    </section>
+
+    <!-- ===== 4. Opinión ===== -->
+    <section class="card">
+      <div class="card-head">
+        <div class="num">4</div>
+        <div><h2>Tu opinión nos importa</h2><p>Cuéntanos qué te gustaría encontrar en las asesorías (opcional).</p></div>
+      </div>
+            <div class="preg">
+        <p style="margin-top:0"><span class="n">💬</span> ¿Algún comentario o tema que te gustaría que tratemos?</p>
+        <textarea id="comentario" maxlength="500" placeholder="Escribe aquí… (opcional)"></textarea>
+        <div class="contador"><span id="cont">0</span>/500</div>
+      </div>
+          </section>
+
+    <label class="consent"><input type="checkbox" id="acepto"> Acepto que Detecta Clínica use mis datos para contactarme y confirmar mi asistencia a la asesoría.</label>
+    <div class="msg-err" id="e-acepto">Necesitamos tu autorización para contactarte.</div>
+
+    <button class="enviar" id="btnEnviar" type="submit">Inscribirme ✨</button>
+    <div class="aviso-err" id="avisoErr">Revisa los campos marcados en rojo.</div>
+  </form>
+
+  <!-- ===== Confirmación ===== -->
+  <section class="card confirm" id="confirm" aria-live="polite">
+    <div class="big" id="cMasc">🎉</div>
+    <h2 id="cTitulo">¡Gracias por inscribirte!</h2>
+    <p id="cTexto" class="nota"></p>
+    <div class="resumen" id="resumen"></div>
+    <button type="button" class="btn-sec" id="copiar">📋 Copiar resumen</button>
+    <button type="button" class="btn-sec" id="otra">➕ Nueva inscripción</button>
+  </section>
+
+  <footer>📍 4to piso, Área de Preventivo – Detecta Clínica · Jueves desde las 10:30 a. m.</footer>
+</div>
+
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const estado = { tema:null, fecha:null };
+
+  /* ---------- Temas ---------- */
+  document.querySelectorAll('.tema').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.tema').forEach(x=>x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true'); estado.tema=b.dataset.v;
+    $('#e-tema').style.display='none'; progreso();
+  }));
+
+  /* ---------- Calendario: solo jueves ---------- */
+  const MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  const DIAS=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+  const hoy=new Date();
+  const base=new Date(hoy.getFullYear(),hoy.getMonth(),1);
+  const MAX_MESES=2; // mes actual + 2 siguientes
+  let offset=0;
+
+  function disponible(d){
+    if(d.getDay()!==4) return false;                       // solo jueves
+    const fin=new Date(d.getFullYear(),d.getMonth(),d.getDate(),10,30);
+    return fin>hoy;                                        // no fechas pasadas (ni hoy después de 10:30)
+  }
+  function fmt(d){
+    return 'Jueves '+d.getDate()+' de '+MESES[d.getMonth()]+' de '+d.getFullYear();
+  }
+  function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+
+  function pintar(){
+    const m=new Date(base.getFullYear(),base.getMonth()+offset,1);
+    $('#mes').textContent=MESES[m.getMonth()]+' '+m.getFullYear();
+    $('#prev').disabled=offset===0; $('#next').disabled=offset===MAX_MESES;
+    const g=$('#grid'); g.innerHTML='';
+    DIAS.forEach((d,i)=>{const e=document.createElement('div');e.className='dow'+(i===3?' jue':'');e.textContent=d;g.appendChild(e)});
+    const inicio=(m.getDay()+6)%7; // lunes = 0
+    for(let i=0;i<inicio;i++){const e=document.createElement('span');e.className='dia vacio';g.appendChild(e)}
+    const total=new Date(m.getFullYear(),m.getMonth()+1,0).getDate();
+    for(let n=1;n<=total;n++){
+      const d=new Date(m.getFullYear(),m.getMonth(),n);
+      const b=document.createElement('button'); b.type='button'; b.className='dia'; b.textContent=n;
+      if(disponible(d)){
+        b.classList.add('disp'); b.setAttribute('aria-label',fmt(d));
+        if(estado.fecha===iso(d)) b.classList.add('sel');
+        b.addEventListener('click',()=>{estado.fecha=iso(d);estado.fechaTxt=fmt(d);
+          $('#fechaTxt').textContent='✅ '+fmt(d)+' · 10:30 a. m.';$('#e-fecha').style.display='none';pintar();progreso();});
+      } else { b.disabled=true; }
+      g.appendChild(b);
+    }
+  }
+  $('#prev').onclick=()=>{if(offset>0){offset--;pintar()}};
+  $('#next').onclick=()=>{if(offset<MAX_MESES){offset++;pintar()}};
+  // si ya no quedan jueves este mes, abrir el siguiente
+  (function(){const t=new Date(hoy.getFullYear(),hoy.getMonth()+1,0).getDate();let hay=false;
+    for(let n=hoy.getDate();n<=t;n++){if(disponible(new Date(hoy.getFullYear(),hoy.getMonth(),n)))hay=true}
+    if(!hay) offset=1;})();
+  pintar();
+
+  $('#comentario').addEventListener('input',e=>{$('#cont').textContent=e.target.value.length});
+
+  /* ---------- Validación ---------- */
+  const celOk=v=>/^9\d{8}$/.test(v.replace(/\D/g,''));
+  const mailOk=v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+  const nomOk=v=>v.trim().split(/\s+/).length>=2;
+  $('#celular').addEventListener('input',e=>{let d=e.target.value.replace(/\D/g,'').slice(0,9);
+    e.target.value=d.replace(/(\d{3})(\d{0,3})(\d{0,3})/,(m,a,b,c)=>[a,b,c].filter(Boolean).join(' '));});
+  [['nombre',nomOk],['celular',celOk],['correo',mailOk]].forEach(([id,fn])=>{
+    $('#'+id).addEventListener('input',()=>{if(fn($('#'+id).value))$('#c-'+id).classList.remove('err');progreso()});
+  });
+
+  function progreso(){
+    const ok=[nomOk($('#nombre').value)&&celOk($('#celular').value)&&mailOk($('#correo').value),
+      !!estado.tema,!!estado.fecha,true];
+    ok.forEach((v,i)=>$('#p'+(i+1)).classList.toggle('ok',v));
+  }
+
+  /* ---------- Guardado (base de datos del artefacto, si está disponible) ---------- */
+  function conTiempo(p,ms){return Promise.race([p,new Promise(r=>setTimeout(()=>r(null),ms))])}
+  async function guardar(datos){
+    try{
+      if(!window.claude||!window.claude.use) return false;
+      const db=await conTiempo(window.claude.use('db'),10000);
+      if(!db) return false;
+      const user=await conTiempo(window.claude.use('user'),10000);
+      let id=null; try{ id=user?await user.id():null }catch(e){}
+      if(!id) return false;
+      const r=await conTiempo(db.doc('inscripciones/'+id).set(datos).then(()=>true),10000);
+      return r===true;
+    }catch(e){ return false; }
+  }
+
+  /* ---------- Envío ---------- */
+  $('#form').addEventListener('submit',async ev=>{
+    ev.preventDefault();
+    let ok=true;
+    const chk=(id,fn)=>{const v=fn($('#'+id).value);$('#c-'+id).classList.toggle('err',!v);if(!v)ok=false};
+    chk('nombre',nomOk); chk('celular',celOk); chk('correo',mailOk);
+    if(!estado.tema){$('#e-tema').style.display='block';ok=false}
+    if(!estado.fecha){$('#e-fecha').style.display='block';ok=false}
+    const acepto=$('#acepto').checked; $('#e-acepto').style.display=acepto?'none':'block'; if(!acepto)ok=false;
+    $('#avisoErr').style.display=ok?'none':'block';
+    if(!ok){const p=document.querySelector('.err, .msg-err[style*="block"]');if(p)p.scrollIntoView({behavior:'smooth',block:'center'});return}
+
+    const datos={
+      nombre:$('#nombre').value.trim(), celular:$('#celular').value.replace(/\D/g,''), correo:$('#correo').value.trim(),
+      tema:estado.tema, fecha:estado.fecha,
+      comentario:$('#comentario').value.trim(), registrado:new Date().toISOString()
+    };
+    const btn=$('#btnEnviar'); btn.disabled=true; btn.textContent='Enviando…';
+    const guardado=await guardar(datos);
+    btn.disabled=false; btn.textContent='Inscribirme ✨';
+
+    const filas=[['👤 Nombre',datos.nombre],['📱 Celular',$('#celular').value],['✉️ Correo',datos.correo],
+      ['💡 Tema',datos.tema],['📅 Fecha',estado.fechaTxt+' · 10:30 a. m.'],['📍 Lugar','4to piso, Área de Preventivo']];
+    if(datos.comentario) filas.push(['💬 Comentario',datos.comentario]);
+    const r=$('#resumen'); r.innerHTML='';
+    filas.forEach(([k,v])=>{const d=document.createElement('div');const b=document.createElement('b');b.textContent=k;
+      const s=document.createElement('span');s.textContent=v;d.append(b,s);r.appendChild(d)});
+    window.__resumen=filas.map(([k,v])=>k.replace(/^\S+\s/,'')+': '+v).join('\n');
+
+    const M={'Nutrición':['detecto-nutricionista.png'],'Psicología':['detecto-psicologo.png'],'Ambos':['detecto-nutricionista.png','detecto-psicologo.png']}[datos.tema];
+    const cm=$('#cMasc'); cm.innerHTML=''; cm.classList.toggle('duo',M.length>1);
+    M.forEach(s=>{const i=document.createElement('img');i.src=s;i.alt='Detecto';cm.appendChild(i)});
+    if(guardado){
+      $('#cTitulo').textContent='¡Gracias por inscribirte!';
+      $('#cTexto').textContent='Recibimos tus datos. Te contactaremos para confirmar tu asistencia. ¡Te esperamos! 💙';
+    }else{
+      $('#cTitulo').textContent='Revisa tu resumen';
+      $('#cTexto').textContent='No pudimos registrar tu inscripción automáticamente desde aquí. Copia el resumen y envíalo al personal de Detecta Clínica para confirmar tu cupo.';
+    }
+    $('#form').style.display='none';
+    $('#confirm').style.display='block'; $('#confirm').scrollIntoView({behavior:'smooth'});
+  });
+
+  $('#copiar').onclick=async()=>{try{await navigator.clipboard.writeText('Inscripción – Asesorías gratuitas\n'+window.__resumen);
+    $('#copiar').textContent='✅ ¡Copiado!'}catch(e){$('#copiar').textContent='Selecciona y copia el texto de arriba'}};
+  $('#otra').onclick=()=>location.reload();
+})();
+</script>
+</body>
+</html>
